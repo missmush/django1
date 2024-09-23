@@ -1,0 +1,16 @@
+Git Commands ......................
+
+git status
+git add --all
+git commit -m "message"
+git push
+
+git pull
+
+
+
+
+Django commands --------------------
+
+python manage.py runserver
+
