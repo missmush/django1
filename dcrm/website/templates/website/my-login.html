@@ -11,7 +11,7 @@
             <hr>
             <br>
             <form method="POST" autocomplete="off">
-                {% csrt_token %}
+                {% csrf_token %}
                 {{login_form|crispy}}
                 <br>
                 <button type="submit" class="btn btn-primary w-100 btn-block p-2"> Login </button>

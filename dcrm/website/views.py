@@ -4,7 +4,7 @@ from .forms import CreateUserForm, LoginForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate
 
-from django.contrib.auth.decorators
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -35,15 +35,20 @@ def my_login(request):
             password = request.POST.get('password')
 
             user = authenticate(request, username=username, password=password)
-
+            return redirect('')
             if user is not None:
                 auth.login(request, user)
                 
-        context = {'form': form}
-        return render(request,'website/register.html', context=context)
+    context = {'login_form': form}
+    return render(request,'website/my-login.html', context=context)
     
 # logout a user
 def user_logout(request):
 
     auth.logout(request)
     return redirect("my-login")
+
+# dashboard
+@login_required(login_url='my-login')
+def dashboard(request):
+    return render(request, 'website/dashboard.html')
