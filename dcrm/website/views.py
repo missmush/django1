@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate
 
 from django.contrib.auth.decorators import login_required
 
+from .models import Record
 
 def home(request):
     return render(request, 'website/index.html')
@@ -35,9 +36,10 @@ def my_login(request):
             password = request.POST.get('password')
 
             user = authenticate(request, username=username, password=password)
-            return redirect('')
+            
             if user is not None:
                 auth.login(request, user)
+                return redirect('dashboard')
                 
     context = {'login_form': form}
     return render(request,'website/my-login.html', context=context)
@@ -51,4 +53,7 @@ def user_logout(request):
 # dashboard
 @login_required(login_url='my-login')
 def dashboard(request):
-    return render(request, 'website/dashboard.html')
+
+    my_records = Record.objects.all()
+    context = {'records': my_records}
+    return render(request, 'website/dashboard.html', context=context)

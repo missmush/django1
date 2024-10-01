@@ -1,0 +1,13 @@
+{% extends 'website/base.html' %}
+
+{% block content %}
+    
+    <h1> Welcome to the dashboard {{user}} </h1>
+
+    {% for record in records %}
+        {{record.id}}
+        {{record.first_name}}
+        {{record.last_name}}
+    {% endfor %}
+    
+{% endblock %}
