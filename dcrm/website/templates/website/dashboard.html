@@ -2,12 +2,49 @@
 
 {% block content %}
     
-    <h1> Welcome to the dashboard {{user}} </h1>
 
-    {% for record in records %}
-        {{record.id}}
-        {{record.first_name}}
-        {{record.last_name}}
-    {% endfor %}
-    
+    <br>
+    <h5> Welcome to the dashboard {{user}} </h5>
+    <hr>
+
+    <a class="btn btn-outline-primary btn-sm" href="{% url 'create-record' %} ">
+        Create Record
+    </a>
+
+    <hr>
+
+    <table class="table table-dark table-hover table-bordered">
+
+        <thread class="table-primary">
+            <tr>
+                <th scope="col"> ID </th>
+                <th scope="col"> First Name </th>
+                <th scope="col"> Last Name </th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Phone </th>
+                <th scope="col"> Address </th>
+                <th scope="col"> City </th>
+                <th scope="col"> Date Joined </th>
+                <th scope="col"> View </th>
+            </tr>
+        </thread>
+
+        <tbody>
+        {% if records %}
+            {% for record in records %}
+            <tr>
+                <td> {{record.id}} </td>
+                <td> {{record.first_name}} </td>
+                <td> {{record.last_name}} </td>
+                <td> {{record.email}} </td>
+                <td> {{record.phone}} </td>
+                <td> {{record.address}} </td>
+                <td> {{record.city}} </td>
+                <td> {{record.creation_data}} </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
 {% endblock %}
