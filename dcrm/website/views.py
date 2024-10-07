@@ -101,4 +101,7 @@ def singular_record(request, pk):
 # delete a record
 @login_required(login_url='my-login')
 def delete_record(request, pk):
-    record = Record.objects.get
+    record = Record.objects.get(id=pk)
+    record.delete()
+
+    return redirect("dashbaord")
