@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Record
 
+from django.contrib import messages
+
 def home(request):
     return render(request, 'website/index.html')
 
@@ -19,6 +21,7 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Account created successfully!")
             return redirect('my-login')
 
     context = {'form': form}
@@ -48,6 +51,7 @@ def my_login(request):
 def user_logout(request):
 
     auth.logout(request)
+    messages.success(request, "Logout Success")
     return redirect("my-login")
 
 # dashboard
@@ -68,6 +72,7 @@ def create_record(request):
 
         if form.is_valid():
             form.save()
+            messages.success(request, "Your record was created!")
             return redirect("dashboard")
         
     context = {'create_form': form}
@@ -85,6 +90,7 @@ def update_record(request, pk):
 
         if form.is_valid():
             form.save()
+            messages.success(request, "Your record was updates!")
             return redirect("dashboard")
         
         context = {'update_form': form}
@@ -103,5 +109,10 @@ def singular_record(request, pk):
 def delete_record(request, pk):
     record = Record.objects.get(id=pk)
     record.delete()
-
+    messages.success(request, "Your record was deleted!")
     return redirect("dashbaord")
+
+# games view
+@login_required(login_url='my-login')
+def games(request):
+    return render(request, 'website/games.html')

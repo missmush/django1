@@ -8,9 +8,6 @@ git push
 git pull
 
 
+Start the Website - python manage.py runserver
 
-
-Django commands --------------------
-
-python manage.py runserver
-
+Activate the VENV - venv\Scripts\activate.bat
