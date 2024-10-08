@@ -116,3 +116,12 @@ def delete_record(request, pk):
 @login_required(login_url='my-login')
 def games(request):
     return render(request, 'website/games.html')
+
+# game data view
+@login_required(login_url='my-login')
+def game_data(request):
+
+    data = Gamedata.objects.all()
+    context = {'data': data}
+
+    return render(request, 'website/game-data.html',context=context)

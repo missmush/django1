@@ -30,5 +30,8 @@ urlpatterns = [
     path('delete-record/<int:pk>', views.delete_record, name="delete-record"),
 
     #games
-    path('games', views.games, name="games")
+    path('games', views.games, name="games"),
+
+    #game data page
+    path('game-data', views.game_data, name="game-data"),
     ]
